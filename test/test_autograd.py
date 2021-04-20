@@ -5373,22 +5373,13 @@ separate_complex_tests = ['view_as_real', 'div', '__rdiv__', 'sub']
 # NOTE: Some non-holomorphic are separately tested in TestAutogradComplex until gradcheck works properly
 # for non-holomorphic functions
 
-complex_list_filter = []
-
-# TODO: Add back 'sgn' to complex_list; removed because of Windows test failure with 11.2
-# See: https://github.com/pytorch/pytorch/issues/51980
-if _get_torch_cuda_version() != (11, 2):
-    complex_list_filter.append('sgn')
-
 # allow list for complex
 complex_list = ['t', 'view', 'reshape', 'reshape_as', 'view_as', 'roll', 'clone',
                 'expand', 'rot90', 'transpose',
                 'permute', 'squeeze', 'unsqueeze', 'resize', 'resize_as', 'tril', 'triu',
                 'chunk', 'split', 'split_with_sizes', 'zero_',
-                '__radd__', 'mul', '__rmul__', 'matmul',
-                'diagonal', 'fill_', 'sub',
-                'narrow', 'swapaxes', 'swapdims', 'tensor_split',
-                'baddbmm'] + complex_list_filter + separate_complex_tests
+                '__radd__', 'mul', '__rmul__', 'diagonal', 'fill_', 'sub', 'narrow',
+                'swapaxes', 'swapdims', 'tensor_split'] + separate_complex_tests
 
 # deny list for batched grad computation
 EXCLUDE_BATCHED_GRAD_TESTS = set([
